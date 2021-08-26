@@ -1,0 +1,27 @@
+{
+  "name": "displus.ts",
+  "version": "1.0.0",
+  "description": "Displus.ts is a package that contains methods for Discords API",
+  "main": "index.js",
+  "repository": "https://github.com/PraveshKunwar/DisPlus.ts",
+  "author": "Pravesh Kunwar <praveshk04@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@typescript-eslint/parser": "^4.29.3",
+    "discord.js": "^13.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "husky": "^7.0.2",
+    "prettier": "^2.3.2",
+    "typedoc": "^0.21.6"
+  },
+  "scripts": {
+    "check": "prettier --check src/**/*.ts",
+    "lint::prettier": "npm run check && npx prettier --config .prettierrc --write .",
+    "lint": "npx eslint src/**/*.ts && npm run lint::prettier",
+    "husky::dev": "npm run lint"
+  }
+}
