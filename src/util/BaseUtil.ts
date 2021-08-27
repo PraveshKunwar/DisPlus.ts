@@ -17,7 +17,7 @@ export default class BaseUtil {
       return false;
     } else return true;
   }
-  public isGuild(guild: Guild): this is Guild {
+  public isGuild(guild: Guild): boolean {
     if (guild instanceof Guild) {
       return true;
     } else return false;
