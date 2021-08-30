@@ -1,6 +1,6 @@
-import { Client, Guild, Snowflake } from 'discord.js';
+import { Client, GuildMember, Snowflake } from 'discord.js';
 
-export default class BaseUtil {
+export class BaseUtil {
    protected client: Client;
    public constructor(client: Client) {
       this.client = client;
@@ -10,12 +10,26 @@ export default class BaseUtil {
          return false;
       } else return true;
    }
-   public isGuild(guild: Guild): boolean {
-      if (guild instanceof Guild) {
+   public async isMember(
+      id: Snowflake,
+      guild: Snowflake
+   ): Promise<boolean> {
+      const getGuild = await this.client.guilds.fetch({
+         guild
+      });
+      const getMember = await getGuild.members.fetch({
+         user: id
+      });
+      if (
+         (await getGuild.members.fetch({ user: id })) ===
+         undefined
+      ) {
+         return false;
+      } else if (
+         getMember instanceof GuildMember &&
+         getMember !== undefined
+      ) {
          return true;
-      } else return false;
-   }
-   public async isMember(id: Snowflake) {
-      const getMember = await this.client.users.fetch(id);
+      }
    }
 }
